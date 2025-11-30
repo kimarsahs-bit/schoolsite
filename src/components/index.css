@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================= */
+/* GLOBAL SETTINGS & OPTIMIZATIONS */
+/* ============================================= */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Custom Text Selection Color */
+::selection {
+  background: hsl(45, 93%, 47%);
+  color: #000;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================= */
+/* COLOR PALETTE & VARIABLES */
+/* ============================================= */
+
+@layer base {
+  :root {
+    /* --- MODERN ROYAL PALETTE --- */
+    
+    /* Background: Deep Midnight Blue (Rich & Dark) */
+    --background: 224 71% 4%;
+    --background-rgb: 3, 13, 31; 
+    
+    /* Foreground: Soft White */
+    --foreground: 210 40% 98%;
+
+    /* Card: Slightly lighter midnight */
+    --card: 224 71% 7%;
+    --card-foreground: 210 40% 98%;
+
+    /* Primary: Electric Royal Blue/Indigo */
+    --primary: 252 85% 65%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary: Metallic Gold (Less Yellow, More Amber) */
+    --gold: 45 93% 47%;
+    --gold-light: 48 90% 70%;
+    
+    /* Accents */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    
+    /* Semantic Colors */
+    --success: 142 71% 45%;
+    --destructive: 0 84% 60%;
+    
+    /* --- GRADIENTS & EFFECTS --- */
+    
+    /* Sky Blue, Deep Blue & Light Blue Mix with Shadow */
+    --gradient-hero: radial-gradient(circle at 20% 0%, rgba(135, 206, 250, 0.25), transparent 40%),
+                     radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.2), transparent 50%),
+                     radial-gradient(circle at 50% 50%, rgba(100, 180, 255, 0.1), transparent 60%),
+                     linear-gradient(135deg, #1a3a52 0%, #2d5a8f 40%, #4a7ba7 70%, #1a3a52 100%);
+
+    /* Metallic Gold Gradient for Text/Buttons */
+    --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #d4af37 100%);
+    
+    /* Royal Gradient */
+    --gradient-royal: linear-gradient(135deg, hsl(252 85% 65%), hsl(224 71% 40%));
+    
+    /* Card Glass Gradient */
+    --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+
+    /* Shadows with colored glow - Deep blue and sky blue shadows */
+    --shadow-royal: 0 20px 40px -12px rgba(30, 144, 255, 0.45);
+    --shadow-gold: 0 10px 30px -10px rgba(135, 206, 250, 0.35);
+    --shadow-3d: 0 25px 60px -12px rgba(10, 40, 80, 0.7);
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --radius: 1rem;
+  }
+
+  .light {
+    /* Elegant Light Mode */
+    --background: 210 40% 98%;
+    --background-rgb: 250, 250, 252;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --border: 220 13% 91%;
+    --primary: 252 85% 60%;
+    --gold: 45 93% 40%; /* Darker gold for light mode readability */
+    --gradient-hero: linear-gradient(to bottom, #ffffff, #f3f4f6);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    background-image: var(--gradient-hero);
+    background-attachment: fixed;
+    background-size: cover;
+    overflow-x: hidden;
+  }
+
+  /* Elegant Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em; /* Tighter tracking for modern feel */
+    line-height: 1.2;
+  }
+  
+  h1 {
+    background: linear-gradient(to bottom, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Fallback */
+    color: white; 
+  }
+}
+
+/* ============================================= */
+/* COMPONENT CLASSES */
+/* ============================================= */
+
+@layer components {
+  
+  /* --- 3D Glass Card --- */
+  .card-3d {
+    position: relative;
+    background: rgba(10, 40, 80, 0.5);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(135, 206, 250, 0.15);
+    box-shadow: 0 8px 32px rgba(30, 144, 255, 0.15), inset 0 0 20px rgba(135, 206, 250, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    overflow: hidden;
+  }
+
+  .card-3d::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(135, 206, 250, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-8px);
+    border-color: rgba(135, 206, 250, 0.4);
+    box-shadow: 0 12px 40px rgba(30, 144, 255, 0.25), inset 0 0 20px rgba(135, 206, 250, 0.08);
+  }
+  
+  .card-3d:hover::before {
+    opacity: 1;
+  }
+
+  /* --- Royal Text Gradient (The "Gold" Effect) --- */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #00bfff 0%, #1e90ff 50%, #00ced1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+  }
+
+  /* --- Sky Blue Text Gradient --- */
+  .text-sky-gradient {
+    background: linear-gradient(135deg, #87ceeb 0%, #1e90ff 50%, #4682b4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+  }
+
+  /* --- Buttons --- */
+  .btn-royal {
+    background: var(--gradient-royal);
+    box-shadow: 0 4px 15px rgba(88, 28, 135, 0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .btn-royal::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+  }
+
+  .btn-royal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(88, 28, 135, 0.6);
+  }
+
+  .btn-gold {
+    background: var(--gradient-gold);
+    color: hsl(var(--foreground));
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(253, 185, 49, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(253, 185, 49, 0.6);
+    filter: brightness(1.1);
+  }
+
+  /* --- Navigation Glass --- */
+  .header-glass {
+    background: rgba(15, 50, 90, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(135, 206, 250, 0.2);
+    box-shadow: 0 8px 32px rgba(30, 144, 255, 0.1);
+  }
+  
+  .container-wide {
+    max-width: 85rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ============================================= */
+/* ANIMATIONS */
+/* ============================================= */
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-glow { animation: glow 3s ease-in-out infinite alternate; }
+.animate-pulse-slow { animation: pulseGlow 4s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(253, 185, 49, 0.2); }
+  100% { box-shadow: 0 0 25px rgba(253, 185, 49, 0.6), 0 0 10px rgba(253, 185, 49, 0.4); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; filter: brightness(1.2); }
+}
+
+/* ============================================= */
+/* UTILITIES & SCROLLBARS */
+/* ============================================= */
+
+/* Attractive Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #87CEFA, #1E90FF);
+  border-radius: 10px;
+  border: 2px solid rgba(15, 50, 90, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1E90FF;
+}
+
+/* Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================= */
+/* MOBILE OPTIMIZATIONS */
+/* ============================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --radius: 0.75rem;
+  }
+  
+  /* Better font sizing for mobile reading */
+  p, span, div {
+    line-height: 1.6;
+  }
+  
+  .card-3d:hover {
+    transform: none; /* Disable hover lift on touch */
+  }
+  
+  /* Simplify background for performance */
+  body {
+    background-image: linear-gradient(to bottom, hsl(224 71% 4%), hsl(224 60% 8%));
+  }
+}
