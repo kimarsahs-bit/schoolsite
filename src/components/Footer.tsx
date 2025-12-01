@@ -34,20 +34,20 @@ const Footer = () => {
 
   // State for dynamic branding data
   const [brandingData, setBrandingData] = useState({
-    schoolName: "Ramakrishna mission",
+    schoolName: "Ramakrishna Mission",
     tagline: "Excellence in Education",
     logoUrl: "/placeholder.svg"
   });
 
   // Load branding data from Supabase
   useEffect(() => {
-    getSupabaseData('ramakrishna-mission-branding', {
-      schoolName: "Ramakrishna mission",    
+    getSupabaseData('royal-academy-branding', {
+      schoolName: "Ramakrishna Mission",
       tagline: "Excellence in Education",
       logoUrl: "/placeholder.svg"
     }).then(data => {
       setBrandingData({
-        schoolName: data.schoolName || "Ramakrishna mission",
+        schoolName: data.schoolName || "Ramakrishna Mission",
         tagline: data.tagline || "Excellence in Education",
         logoUrl: data.logoUrl || "/placeholder.svg"
       });
