@@ -1,0 +1,1 @@
+allow user to create their id when they are normal client
