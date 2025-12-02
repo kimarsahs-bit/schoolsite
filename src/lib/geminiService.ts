@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyBmCBMa2oYj3Gz5vD4VVbmzbQjkstrp0g4");
+const genAI = new GoogleGenerativeAI("AIzaSyBMJe18yL_pUFjzUEuPSuavS9njaCbhiB0");
 
 export interface Message {
   id: string;
