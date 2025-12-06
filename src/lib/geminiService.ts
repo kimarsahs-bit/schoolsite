@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyBMJe18yL_pUFjzUEuPSuavS9njaCbhiB0");
+const genAI = new GoogleGenerativeAI("AIzaSyDm4wM-KucNC4eiiR5ENF625kc8leSI1oE");
 
 export interface Message {
   id: string;
@@ -24,7 +24,7 @@ export class GeminiService {
   private currentAbortController: AbortController | null = null;
   
   constructor() {
-    this.model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+    this.model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
   }
 
   async sendMessage(
