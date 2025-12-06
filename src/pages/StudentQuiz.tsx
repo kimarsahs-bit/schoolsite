@@ -8,7 +8,7 @@ import jsPDF from "jspdf";
 
 // Gemini API Configuration
 // Using Gemini 2.0 Flash-Lite model for quiz generation
-const API_KEY = "AIzaSyCp6NGpHB12hR_KTKga7hR1I1y4JNEkb_o";
+const API_KEY = "AIzaSyATCtZ9itZ2SaR3F16c1cAc3MuHp5ulyvE";
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 
 interface Question {
